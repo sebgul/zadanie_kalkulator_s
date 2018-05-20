@@ -36,6 +36,7 @@ CREATE TABLE
     calculation
     (
         id BIGINT NOT NULL,
+        name VARCHAR NULL,
         gross_daily NUMERIC NULL,
         pln_rate NUMERIC NULL,
         net_pay NUMERIC NULL,
@@ -50,18 +51,18 @@ CREATE TABLE
         next_val BIGINT
     );
 
--- INSERT INTO calculation(id, gross_daily, pln_rate, net_pay, country_id)
---   VALUES(1, NULL, NULL, NULL, 1);
--- INSERT INTO calculation(id, gross_daily, pln_rate, net_pay, country_id)
---   VALUES(2, NULL, NULL, NULL, 2);
--- INSERT INTO calculation(id, gross_daily, pln_rate, net_pay, country_id)
---   VALUES(3, NULL, NULL, NULL, 3);
+-- INSERT INTO calculation(id, name, gross_daily, pln_rate, net_pay, country_id)
+--   VALUES(1, "Germany calculation", NULL, NULL, NULL, 1);
+-- INSERT INTO calculation(id, name, gross_daily, pln_rate, net_pay, country_id)
+--   VALUES(2, "Great Britain calculation", NULL, NULL, NULL, 2);
+-- INSERT INTO calculation(id, "Poland calculation", name, gross_daily, pln_rate, net_pay, country_id)
+--   VALUES(3, NULL, 1, NULL, 3);
 
-INSERT INTO calculation(id, gross_daily, pln_rate, net_pay, country_id)
-  VALUES(1, 0, 0, 0, 1);
-INSERT INTO calculation(id, gross_daily, pln_rate, net_pay, country_id)
-  VALUES(2, 0, 0, 0, 2);
-INSERT INTO calculation(id, gross_daily, pln_rate, net_pay, country_id)
-  VALUES(3, 0, 0, 0, 3);
+INSERT INTO calculation(id, name, gross_daily, pln_rate, net_pay, country_id)
+  VALUES(1, "Germany calculation", 0, 0, 0, 1);
+INSERT INTO calculation(id, name, gross_daily, pln_rate, net_pay, country_id)
+  VALUES(2, "Great Britain calculation", 0, 0, 0, 2);
+INSERT INTO calculation(id, name, gross_daily, pln_rate, net_pay, country_id)
+  VALUES(3, "Poland calculation", 0, 1, 0, 3);
 
 INSERT INTO hibernate_sequence_calculations (next_val) VALUES (4);

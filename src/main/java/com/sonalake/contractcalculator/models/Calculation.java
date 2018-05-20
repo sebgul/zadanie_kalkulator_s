@@ -16,6 +16,7 @@ public class Calculation {
     @ManyToOne
     private Country country;
 
+    private String name;
     private BigDecimal grossDaily;
     private BigDecimal plnRate;
     private BigDecimal netPay;
@@ -26,6 +27,14 @@ public class Calculation {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public BigDecimal getGrossDaily() {
