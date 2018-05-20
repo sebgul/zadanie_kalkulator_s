@@ -9,6 +9,10 @@ import {Component} from '@angular/core';
       </h1>
     </div>
     <router-outlet></router-outlet>
+    <br>
+    <a href="/calculations">Calculations</a>
+    <br>
+    <a href="/calculations/add">Add calculations</a>
   `,
   styleUrls: ['./app.component.css']
 })

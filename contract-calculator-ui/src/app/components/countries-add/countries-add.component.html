@@ -1,0 +1,32 @@
+<div class="container">
+  <form [formGroup]="countryForm" (ngSubmit)="submitRegistration()" novalidate>
+    <div *ngIf="validMessage != ''">
+      <h3 class="has-info">{{validMessage}}</h3>
+    </div>
+    <div class="form-group">
+      <label>Country Name</label>
+      <select class="form-control" formControlName="name" required autofocus>
+        <option value="">Please select a country name</option>
+        <option *ngFor="let s of states"
+                [value]="s.name + '*' + s.alpha3Code">
+          {{s.name}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Working Days in Month</label>
+      <input type="text" class="form-control" formControlName="workingDaysInMonth" required/>
+    </div>
+    <div class="form-group">
+      <label>Income Tax Rate</label>
+      <input type="text" class="form-control" formControlName="incomeTaxRate" required/>
+    </div>
+    <div class="form-group">
+      <label>Fixed Costs</label>
+      <input type="text" class="form-control" formControlName="fixedCosts" required/>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <br>
+  <a href="/countries">Countries</a>
+</div>
