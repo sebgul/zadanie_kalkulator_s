@@ -15,7 +15,7 @@ export class CountriesAddComponent implements OnInit {
   countryForm: FormGroup;
   validMessage = '';
 
-  constructor(private countryService: CountriesService, private stateService: StatesService) {
+  constructor(private countriesService: CountriesService, private statesService: StatesService) {
   }
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class CountriesAddComponent implements OnInit {
   }
 
   getStates() {
-    this.stateService.getStates().subscribe(
+    this.statesService.getStates().subscribe(
       data => {
         this.states = data;
       },
@@ -40,12 +40,15 @@ export class CountriesAddComponent implements OnInit {
     );
   }
 
-  submitRegistration() {
+  submitCountry() {
     if (this.countryForm.valid) {
       this.validMessage = 'New country data has been submitted. Thank you!';
       this.countryForm.patchValue({isoCode: this.countryForm.getRawValue().name.split('*')[1]});
       this.countryForm.patchValue({name: this.countryForm.getRawValue().name.split('*')[0]});
-      this.countryService.createCountry(this.countryForm.value).subscribe(
+
+      console.log(this.countryForm.getRawValue());
+
+      this.countriesService.createCountry(this.countryForm.value).subscribe(
         data => {
           this.countryForm.reset();
           return true;

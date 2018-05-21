@@ -12,7 +12,7 @@ import {Component} from '@angular/core';
     <br>
     <a href="/calculations">Calculations</a>
     <br>
-    <a href="/calculations/add">Add calculations</a>
+    <a href="/calculations/add">Add calculation</a>
   `,
   styleUrls: ['./app.component.css']
 })

@@ -11,13 +11,15 @@ import {StatesService} from './services/states.service';
 import {CountriesListComponent} from './components/countries-list/countries-list.component';
 import {CountriesAddComponent} from './components/countries-add/countries-add.component';
 import {CalculationsListComponent} from './components/calculations-list/calculations-list.component';
+import { CalculationsAddComponent } from './components/calculations-add/calculations-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CountriesListComponent,
     CountriesAddComponent,
-    CalculationsListComponent
+    CalculationsListComponent,
+    CalculationsAddComponent
   ],
   imports: [
     BrowserModule,

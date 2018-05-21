@@ -10,7 +10,7 @@ export class CalculationsListComponent implements OnInit {
 
   public calculations;
 
-  constructor(private calculationService: CalculationsService) {
+  constructor(private calculationsService: CalculationsService) {
   }
 
   ngOnInit() {
@@ -18,7 +18,7 @@ export class CalculationsListComponent implements OnInit {
   }
 
   getCalculations() {
-    this.calculationService.getCalculations().subscribe(
+    this.calculationsService.getCalculations().subscribe(
       data => {
         this.calculations = data;
       },

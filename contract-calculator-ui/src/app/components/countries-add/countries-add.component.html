@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="countryForm" (ngSubmit)="submitRegistration()" novalidate>
+  <form [formGroup]="countryForm" (ngSubmit)="submitCountry()" novalidate>
     <div *ngIf="validMessage != ''">
       <h3 class="has-info">{{validMessage}}</h3>
     </div>
@@ -25,7 +25,7 @@
       <label>Fixed Costs</label>
       <input type="text" class="form-control" formControlName="fixedCosts" required/>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Calculate</button>
   </form>
   <br>
   <a href="/countries">Countries</a>

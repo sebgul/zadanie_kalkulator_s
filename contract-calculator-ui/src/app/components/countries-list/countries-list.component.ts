@@ -10,7 +10,7 @@ export class CountriesListComponent implements OnInit {
 
   public countries;
 
-  constructor(private countryService: CountriesService) {
+  constructor(private countriesService: CountriesService) {
   }
 
   ngOnInit() {
@@ -18,7 +18,7 @@ export class CountriesListComponent implements OnInit {
   }
 
   getCountries() {
-    this.countryService.getCountries().subscribe(
+    this.countriesService.getCountries().subscribe(
       data => {
         this.countries = data;
       },
