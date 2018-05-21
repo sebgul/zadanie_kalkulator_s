@@ -1,5 +1,8 @@
 -- countries
 
+DROP TABLE country;
+DROP TABLE hibernate_sequence;
+
 CREATE TABLE
     country
     (
@@ -19,9 +22,9 @@ CREATE TABLE
     );
 
 INSERT INTO country (id, name, iso_code, working_days_in_month, income_tax_rate, fixed_costs)
-  VALUES (1, "Germany", "GER", 22, 0.2, 800);
+  VALUES (1, "Germany", "DEU", 22, 0.2, 800);
 INSERT INTO country (id, name, iso_code, working_days_in_month, income_tax_rate, fixed_costs)
-  VALUES (2, "Great Britain", "GBP", 22, 0.25, 600);
+  VALUES (2, "Great Britain", "GBR", 22, 0.25, 600);
 INSERT INTO country (id, name, iso_code, working_days_in_month, income_tax_rate, fixed_costs)
   VALUES (3, "Poland", "POL", 22, 0.19, 1200);
 
