@@ -15,14 +15,14 @@ app.use(bodyParser.urlencoded({ extended: false, limit: '20mb' }));
 app.use(cors());
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist/contract-calculator-ui/')));
+app.use(express.static(path.join(__dirname, 'src/main/resources/static/')));
 
 // Set our api routes proxy to point to spring boot server
 app.use('/server', proxy('http://localhost:8080'));
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/contract-calculator-ui/index.html'));
+  res.sendFile(path.join(__dirname, 'src/main/resources/static/index.html'));
 });
 
 /**
