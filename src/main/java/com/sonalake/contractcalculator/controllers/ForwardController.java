@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping
 public class ForwardController {
 
-    @GetMapping(value = "/**/{[path:[^\\.]*}")
+    @GetMapping(value = "/**/**/{[path:[^\\.]*}")
     public ModelAndView forward() {
         return new ModelAndView("/index.html");
     }
