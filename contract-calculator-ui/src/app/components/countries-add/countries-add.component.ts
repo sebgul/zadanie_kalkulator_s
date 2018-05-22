@@ -1,8 +1,32 @@
 import {Component, OnInit} from '@angular/core';
 import {CountriesService} from '../../services/countries.service';
 import {StatesService} from '../../services/states.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {throwError} from 'rxjs';
+
+function workingDaysInMonthValidator(c: AbstractControl): { [key: string]: boolean } | null {
+  if (c.value !== undefined && (isNaN(c.value) || c.value < 1 || c.value > 31)) {
+    return {'grossDaily': true};
+  }
+
+  return null;
+}
+
+function incomeTaxRateValidator(c: AbstractControl): { [key: string]: boolean } | null {
+  if (c.value !== undefined && (isNaN(c.value) || c.value < 0.01 || c.value > 0.99)) {
+    return {'grossDaily': true};
+  }
+
+  return null;
+}
+
+function fixedCostsValidator(c: AbstractControl): { [key: string]: boolean } | null {
+  if (c.value !== undefined && (isNaN(c.value) || c.value < 0.01 || c.value > 10000)) {
+    return {'grossDaily': true};
+  }
+
+  return null;
+}
 
 @Component({
   selector: 'app-countries-add',
@@ -27,9 +51,18 @@ export class CountriesAddComponent implements OnInit {
       isoCode: new FormControl(),
       currencyCode: new FormControl(),
       currencySymbol: new FormControl(),
-      workingDaysInMonth: new FormControl(22, Validators.required),
-      incomeTaxRate: new FormControl('', Validators.required),
-      fixedCosts: new FormControl('', Validators.required)
+      workingDaysInMonth: new FormControl(22, [
+        Validators.required,
+        workingDaysInMonthValidator
+      ]),
+      incomeTaxRate: new FormControl('', [
+        Validators.required,
+        incomeTaxRateValidator
+      ]),
+      fixedCosts: new FormControl('', [
+        Validators.required,
+        fixedCostsValidator
+      ])
     });
   }
 
@@ -46,7 +79,9 @@ export class CountriesAddComponent implements OnInit {
   submitCountry() {
     // form must be valid after reset,
     // reset() function cleans default values from FormGroup definition (ngOnInit)
-    this.countryForm.patchValue({workingDaysInMonth: 22});
+    if (this.countryForm.getRawValue().workingDaysInMonth === '') {
+      this.countryForm.patchValue({workingDaysInMonth: 22});
+    }
 
     if (this.countryForm.valid) {
       this.validMessage = 'New country data has been submitted. Thank you!';
@@ -66,7 +101,7 @@ export class CountriesAddComponent implements OnInit {
         }
       );
     } else {
-      this.validMessage = 'Please fill out the form before submitting.';
+      this.validMessage = 'Please fill out the form with correct values before submitting.';
     }
   }
 }

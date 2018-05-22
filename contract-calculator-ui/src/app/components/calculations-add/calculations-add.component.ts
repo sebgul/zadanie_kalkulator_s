@@ -1,9 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {ExchangeRatesService} from '../../services/exchange-rates.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {throwError} from 'rxjs';
 import {CountriesService} from '../../services/countries.service';
 import {CalculationsService} from '../../services/calculations.service';
+
+function grossDailyValidator(c: AbstractControl): { [key: string]: boolean } | null {
+  if (c.value !== undefined && (isNaN(c.value) || c.value < 0.01 || c.value > 1000000)) {
+    return {'grossDaily': true};
+  }
+
+  return null;
+}
 
 @Component({
   selector: 'app-calculations-add',
@@ -36,7 +44,10 @@ export class CalculationsAddComponent implements OnInit {
     this.calculationForm = new FormGroup({
       name: new FormControl(),
       countryId: new FormControl('', Validators.required),
-      grossDaily: new FormControl('', Validators.required),
+      grossDaily: new FormControl('', [
+        Validators.required,
+        grossDailyValidator
+      ]),
       plnRate: new FormControl(1, Validators.required),
       netPay: new FormControl(0, Validators.required),
     });
@@ -209,7 +220,7 @@ export class CalculationsAddComponent implements OnInit {
         }
       );
     } else {
-      this.validMessage = 'Please fill out the form before submitting.';
+      this.validMessage = 'Please fill out the form with correct values before submitting.';
     }
   }
 }
