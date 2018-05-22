@@ -2,6 +2,7 @@
   <table class="table table-bordered table-inverse">
     <tr>
       <th>Name</th>
+      <th>Currency</th>
       <th>Iso Code</th>
       <th>Days</th>
       <th>Income Tax</th>
@@ -10,6 +11,9 @@
     <tr *ngFor="let country of countries">
       <td>
         {{country.name}}
+      </td>
+      <td>
+        {{country.currency}} ({{country.currencySymbol}})
       </td>
       <td>
         {{country.isoCode}}
@@ -21,7 +25,7 @@
         {{country.incomeTaxRate}}
       </td>
       <td>
-        {{country.fixedCosts}}
+        {{country.fixedCosts}} {{country.currencySymbol}}
       </td>
     </tr>
   </table>

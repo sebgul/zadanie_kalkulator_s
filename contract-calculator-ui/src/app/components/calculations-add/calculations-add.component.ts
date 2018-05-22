@@ -3,7 +3,6 @@ import {ExchangeRatesService} from '../../services/exchange-rates.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {throwError} from 'rxjs';
 import {CountriesService} from '../../services/countries.service';
-import {StatesService} from '../../services/states.service';
 import {CalculationsService} from '../../services/calculations.service';
 
 @Component({
@@ -14,7 +13,6 @@ import {CalculationsService} from '../../services/calculations.service';
 export class CalculationsAddComponent implements OnInit {
 
   public countries;
-  public states;
   public exchangeRatesA;
   public exchangeRatesB;
   public exchangeRatesC;
@@ -23,7 +21,6 @@ export class CalculationsAddComponent implements OnInit {
   validMessage = '';
 
   constructor(private countriesService: CountriesService,
-              private statesService: StatesService,
               private calculationService: CalculationsService,
               private exchangeRateServiceA: ExchangeRatesService,
               private exchangeRateServiceB: ExchangeRatesService,
@@ -32,7 +29,6 @@ export class CalculationsAddComponent implements OnInit {
 
   ngOnInit() {
     this.getCountries();
-    this.getStates();
     this.getExchangeRatesA();
     this.getExchangeRatesB();
     this.getExchangeRatesC();
@@ -53,16 +49,6 @@ export class CalculationsAddComponent implements OnInit {
       },
       err => console.error(err),
       () => console.log('countries loaded')
-    );
-  }
-
-  getStates() {
-    this.statesService.getStates().subscribe(
-      data => {
-        this.states = data;
-      },
-      err => console.error(err),
-      () => console.log('states loaded')
     );
   }
 
@@ -107,6 +93,9 @@ export class CalculationsAddComponent implements OnInit {
 
       let isoCode;
       let countryName;
+      let currency;
+      let currencyCode;
+      let currencySymbol;
       let workingDaysInMonth;
       let incomeTaxRate;
       let fixedCosts;
@@ -120,23 +109,17 @@ export class CalculationsAddComponent implements OnInit {
           fixedCosts = country.fixedCosts;
           countryId = country.id;
           countryName = country.name;
+          currency = country.currency;
+          currencyCode = country.currencyCode;
+          currencySymbol = country.currencySymbol;
           break;
         }
       }
 
-      let currencyCode;
       let plnRate = 1;
 
       // default plnRate 1 for Poland - in FormGroup definition
       if (isoCode !== 'POL') {
-        // searching for currency code
-        for (const state of this.states) {
-          if (isoCode === state.alpha3Code) {
-            currencyCode = state.currencies[0].code;
-            break;
-          }
-        }
-
         // obtaining currency exchange rate in zlotys
 
         // searching in table C
@@ -180,9 +163,9 @@ export class CalculationsAddComponent implements OnInit {
       const netPayStr = netPay.toFixed(2);
 
       if (netPay < 0) {
-        this.validMessage = 'You have to pay more taxes than you earn. Your have to pay: ' + netPayStr + ' PLN.';
+        this.validMessage = 'You have to pay more taxes than you earn. Your have to pay: ' + netPayStr + ' zł.';
       } else {
-        this.validMessage = 'Your net pay is: ' + netPayStr + ' PLN.';
+        this.validMessage = 'Your net pay is: ' + netPayStr + ' zł.';
       }
 
       this.validMessage += ' Your calculation has been saved. Try again!';
@@ -197,7 +180,10 @@ export class CalculationsAddComponent implements OnInit {
         country: {
           id: countryId,
           name: countryName,
+          currency: currency,
           isoCode: isoCode,
+          currencyCode: currencyCode,
+          currencySymbol: currencySymbol,
           workingDaysInMonth: workingDaysInMonth,
           incomeTaxRate: incomeTaxRate,
           fixedCosts: fixedCosts
@@ -207,7 +193,6 @@ export class CalculationsAddComponent implements OnInit {
       this.calculationService.createCalculation(calculation).subscribe(
         data => {
           this.calculationForm.reset();
-          this.calculationForm.clearValidators();
           return true;
         },
         error => {

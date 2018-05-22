@@ -17,7 +17,10 @@ public class Country {
     private long id;
 
     private String name;
+    private String currency;
     private String isoCode;
+    private String currencyCode;
+    private String currencySymbol;
     private Short workingDaysInMonth;
     private Double incomeTaxRate;
     private BigDecimal fixedCosts;
@@ -38,12 +41,36 @@ public class Country {
         this.name = name;
     }
 
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
     public String getIsoCode() {
         return isoCode;
     }
 
     public void setIsoCode(String isoCode) {
         this.isoCode = isoCode;
+    }
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+    public String getCurrencySymbol() {
+        return currencySymbol;
+    }
+
+    public void setCurrencySymbol(String currencySymbol) {
+        this.currencySymbol = currencySymbol;
     }
 
     public Short getWorkingDaysInMonth() {

@@ -12,13 +12,13 @@
         {{calculation.name}}
       </td>
       <td>
-        {{calculation.grossDaily}}
+        {{calculation.grossDaily}} {{calculation.country.currencySymbol}}
       </td>
       <td>
-        {{calculation.plnRate}}
+        {{calculation.plnRate.toFixed(2)}}
       </td>
       <td>
-        {{calculation.netPay.toFixed(2)}}
+        {{calculation.netPay.toFixed(2)}} {{calculation.country.currencySymbol}}
       </td>
       <td>
         {{calculation.country.name}}

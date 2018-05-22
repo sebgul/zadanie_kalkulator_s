@@ -8,8 +8,8 @@
       <select class="form-control" formControlName="name" required autofocus>
         <option value="">Please select a country name and currency</option>
         <option *ngFor="let s of states"
-                [value]="s.name + '*' + s.alpha3Code">
-          {{s.name}} ({{s.currencies[0].name}})
+                [value]="s.name + '*' + s.alpha3Code + '*' + s.currencies[0].name + '*' + s.currencies[0].code + '*' + s.currencies[0].symbol">
+          {{s.name}} ({{s.currencies[0].symbol}} - {{s.currencies[0].name}})
         </option>
       </select>
     </div>

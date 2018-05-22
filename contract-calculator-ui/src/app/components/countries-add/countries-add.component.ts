@@ -23,7 +23,10 @@ export class CountriesAddComponent implements OnInit {
 
     this.countryForm = new FormGroup({
       name: new FormControl('', Validators.required),
+      currency: new FormControl(),
       isoCode: new FormControl(),
+      currencyCode: new FormControl(),
+      currencySymbol: new FormControl(),
       workingDaysInMonth: new FormControl(22, Validators.required),
       incomeTaxRate: new FormControl('', Validators.required),
       fixedCosts: new FormControl('', Validators.required)
@@ -48,6 +51,9 @@ export class CountriesAddComponent implements OnInit {
     if (this.countryForm.valid) {
       this.validMessage = 'New country data has been submitted. Thank you!';
       this.countryForm.patchValue({isoCode: this.countryForm.getRawValue().name.split('*')[1]});
+      this.countryForm.patchValue({currency: this.countryForm.getRawValue().name.split('*')[2]});
+      this.countryForm.patchValue({currencyCode: this.countryForm.getRawValue().name.split('*')[3]});
+      this.countryForm.patchValue({currencySymbol: this.countryForm.getRawValue().name.split('*')[4]});
       this.countryForm.patchValue({name: this.countryForm.getRawValue().name.split('*')[0]});
 
       this.countriesService.createCountry(this.countryForm.value).subscribe(

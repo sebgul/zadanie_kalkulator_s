@@ -13,7 +13,7 @@
         <option value="">Please select a country</option>
         <option *ngFor="let country of countries"
                 [value]="country.id">
-          {{country.name}}
+          {{country.name}} ({{country.currencySymbol}} - {{country.currency}})
         </option>
       </select>
     </div>
