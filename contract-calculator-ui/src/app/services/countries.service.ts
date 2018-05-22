@@ -14,10 +14,6 @@ export class CountriesService {
   }
 
   getCountries() {
-    // prod
-    // return this.http.get('/api/v1/countries');
-
-    // dev
     return this.http.get('/server/api/v1/countries');
   }
 

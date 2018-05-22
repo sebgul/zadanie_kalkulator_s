@@ -14,10 +14,6 @@ export class CalculationsService {
   }
 
   getCalculations() {
-    // prod
-    // return this.http.get('/api/v1/calculations');
-
-    // dev
     return this.http.get('/server/api/v1/calculations');
   }
 
