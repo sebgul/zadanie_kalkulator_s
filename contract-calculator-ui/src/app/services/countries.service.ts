@@ -14,15 +14,15 @@ export class CountriesService {
   }
 
   getCountries() {
-    return this.http.get('/api/v1/countries');
+    return this.http.get('/server/api/v1/countries');
   }
 
   getCountry(id: number) {
-    return this.http.get('/api/v1/countries/' + id);
+    return this.http.get('/server/api/v1/countries/' + id);
   }
 
   createCountry(country) {
     const body = JSON.stringify(country);
-    return this.http.post('/api/v1/countries', body, httpOptions);
+    return this.http.post('/server/api/v1/countries', body, httpOptions);
   }
 }
