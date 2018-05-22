@@ -97,8 +97,12 @@ export class CalculationsAddComponent implements OnInit {
   }
 
   submitCalculation() {
-    if (this.calculationForm.valid) {
+    // form must be valid after reset,
+    // reset() function cleans default values from FormGroup definition (ngOnInit)
+    this.calculationForm.patchValue({plnRate: 1});
+    this.calculationForm.patchValue({netPay: 0});
 
+    if (this.calculationForm.valid) {
       // obtaining country information
 
       let isoCode;
@@ -109,7 +113,7 @@ export class CalculationsAddComponent implements OnInit {
       let countryId;
 
       for (const country of this.countries) {
-        if (country.id = this.calculationForm.getRawValue().countryId) {
+        if (country.id === parseInt(this.calculationForm.getRawValue().countryId, 10)) {
           isoCode = country.isoCode;
           workingDaysInMonth = country.workingDaysInMonth;
           incomeTaxRate = country.incomeTaxRate;
@@ -203,6 +207,7 @@ export class CalculationsAddComponent implements OnInit {
       this.calculationService.createCalculation(calculation).subscribe(
         data => {
           this.calculationForm.reset();
+          this.calculationForm.clearValidators();
           return true;
         },
         error => {

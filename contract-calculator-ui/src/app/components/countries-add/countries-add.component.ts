@@ -41,12 +41,14 @@ export class CountriesAddComponent implements OnInit {
   }
 
   submitCountry() {
+    // form must be valid after reset,
+    // reset() function cleans default values from FormGroup definition (ngOnInit)
+    this.countryForm.patchValue({workingDaysInMonth: 22});
+
     if (this.countryForm.valid) {
       this.validMessage = 'New country data has been submitted. Thank you!';
       this.countryForm.patchValue({isoCode: this.countryForm.getRawValue().name.split('*')[1]});
       this.countryForm.patchValue({name: this.countryForm.getRawValue().name.split('*')[0]});
-
-      console.log(this.countryForm.getRawValue());
 
       this.countriesService.createCountry(this.countryForm.value).subscribe(
         data => {
