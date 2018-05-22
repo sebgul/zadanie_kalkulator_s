@@ -57,7 +57,10 @@ export class CalculationsAddComponent implements OnInit {
       data => {
         this.exchangeRatesA = data;
       },
-      err => console.error(err),
+      err => {
+        this.validMessage = 'Exchange rate not found, try again.';
+        console.error(err);
+      },
       () => console.log('exchange rates table A loaded')
     );
   }
@@ -67,7 +70,10 @@ export class CalculationsAddComponent implements OnInit {
       data => {
         this.exchangeRatesB = data;
       },
-      err => console.error(err),
+      err => {
+        this.validMessage = 'Exchange rate not found, try again.';
+        console.error(err);
+      },
       () => console.log('exchange rates table B loaded')
     );
   }
@@ -77,7 +83,10 @@ export class CalculationsAddComponent implements OnInit {
       data => {
         this.exchangeRatesC = data;
       },
-      err => console.error(err),
+      err => {
+        this.validMessage = 'Exchange rate not found, try again.';
+        console.error(err);
+      },
       () => console.log('exchange rates table C loaded')
     );
   }
