@@ -4,6 +4,8 @@ import {StatesService} from '../../services/states.service';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {throwError} from 'rxjs';
 
+// custom form validation functions
+
 function workingDaysInMonthValidator(c: AbstractControl): { [key: string]: boolean } | null {
   if (c.value !== undefined && (isNaN(c.value) || c.value < 1 || c.value > 31)) {
     return {'grossDaily': true};

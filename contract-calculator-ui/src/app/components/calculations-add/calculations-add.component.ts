@@ -5,6 +5,8 @@ import {throwError} from 'rxjs';
 import {CountriesService} from '../../services/countries.service';
 import {CalculationsService} from '../../services/calculations.service';
 
+// custom form validation functions
+
 function grossDailyValidator(c: AbstractControl): { [key: string]: boolean } | null {
   if (c.value !== undefined && (isNaN(c.value) || c.value < 0.01 || c.value > 1000000)) {
     return {'grossDaily': true};
@@ -176,6 +178,8 @@ export class CalculationsAddComponent implements OnInit {
       }
 
       const grossDaily = this.calculationForm.getRawValue().grossDaily;
+
+      // calculating the result (net pay)
       const netPay = plnRate * (grossDaily * workingDaysInMonth * (1 - incomeTaxRate) - fixedCosts);
 
       // message for the user
