@@ -1,3 +1,5 @@
+<br>
+<h2 class="header">Add tax info</h2>
 <form [formGroup]="countryForm" (ngSubmit)="submitCountry()" novalidate>
   <div *ngIf="validMessage != ''">
     <h3 class="has-info alert-info">{{validMessage}}</h3>
@@ -13,11 +15,11 @@
     </select>
   </div>
   <div class="form-group">
-    <label>Working Days in Month</label>
+    <label>Working Days in Month (1 - 31)</label>
     <input type="text" class="form-control" formControlName="workingDaysInMonth" required/>
   </div>
   <div class="form-group">
-    <label>Income Tax Rate</label>
+    <label>Income Tax Rate (percentage: 0.01 - 0.99)</label>
     <input type="text" class="form-control" formControlName="incomeTaxRate" required/>
   </div>
   <div class="form-group">

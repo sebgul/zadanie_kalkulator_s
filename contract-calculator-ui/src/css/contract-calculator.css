@@ -15,7 +15,13 @@ body {
 }
 
 h1 {
-  font-size: 2.0em;
+  text-align: center;
+  font-size: 2.5em;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.5em;
 }
 
 .table-bordered, .table-bordered td, .table-bordered th {

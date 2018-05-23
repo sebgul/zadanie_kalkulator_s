@@ -1,26 +1,28 @@
+<br>
+<h2 class="header">Calculations</h2>
 <table class="table table-bordered table-inverse">
   <tr>
     <th>Name</th>
-    <th>Gross Daily</th>
-    <th>Exchange Rate (zł)</th>
-    <th>Net Pay</th>
     <th>Country</th>
+    <th>Exchange Rate (zł)</th>
+    <th>Gross Daily</th>
+    <th>Net Pay</th>
   </tr>
   <tr *ngFor="let calculation of calculations">
     <td>
       {{calculation.name}}
     </td>
     <td>
-      {{calculation.grossDaily}} {{calculation.country.currencySymbol}}
+      {{calculation.country.name}}
     </td>
     <td>
       {{calculation.plnRate.toFixed(2)}}
     </td>
     <td>
-      {{calculation.netPay.toFixed(2)}} zł
+      {{calculation.grossDaily}} {{calculation.country.currencySymbol}}
     </td>
     <td>
-      {{calculation.country.name}}
+      {{calculation.netPay.toFixed(2)}} zł
     </td>
   </tr>
 </table>

@@ -1,9 +1,11 @@
+<br>
+<h2 class="header">Calculate now</h2>
 <form [formGroup]="calculationForm" (ngSubmit)="submitCalculation()" novalidate>
   <div *ngIf="validMessage != ''">
     <h3 class="has-info alert-info">{{validMessage}}</h3>
   </div>
   <div class="form-group">
-    <label>Calculation Name</label>
+    <label>Calculation Name (optional)</label>
     <input type="text" class="form-control" formControlName="name"/>
   </div>
   <div class="form-group">
